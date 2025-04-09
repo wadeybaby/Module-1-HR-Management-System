@@ -1,4 +1,4 @@
-ModernTech solutions HR Management System
+**ModernTech solutions HR Management System**
 
 ![Screenshot of Homepage](https://github.com/wadeybaby/Module-1-HR-Management-System/blob/6f79838708eeb3fe8986c56744ec0da74f60dfec/Screenshot%202025-04-09%20115758.png)
 
