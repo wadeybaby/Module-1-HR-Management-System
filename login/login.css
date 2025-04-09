@@ -1,0 +1,115 @@
+/* Resetting margins and paddings for all elements*/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Body Styling*/
+body {
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+
+  /* Background Image */
+  background-image: url('../assets/195384443_80e5a83e-0a99-494d-9489-4e89a8630084.jpg'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat; 
+  background-color: #f4f4f4; 
+}
+
+/* Main container styling */
+.container {
+  display: flex;
+  width: 80%;
+  height: 70%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Left side of 'container' div */
+.left-side {
+  width: 50%;
+  background-color: #1e90ff;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+
+  /* Background Image for the left-side */
+  background-image: url('../assets/logo-color.png'); 
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
+}
+
+/* Placeholder styles for logo or text on the left side */
+.logo-placeholder {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.text-placeholder {
+  font-size: 1rem;
+}
+
+/* Right Side of 'container' div */
+.right-side {
+  width: 50%;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #ffffff;
+}
+
+.right-side h1 {
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Login Form Styling -start- */
+.login-form {
+  width: 100%;
+}
+
+.login-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  background-color: #1e90ff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.login-form button:hover {
+  background-color: #0073e6;
+}
+/* Login Form Styling -end- */

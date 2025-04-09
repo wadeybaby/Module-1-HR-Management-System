@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Page Title -->
+    <title>Time Off & Attendance Management</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+
+    <!-- Linking Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+    <!-- CSS Styling -->
+    <style>
+        /* Navbar start*/
+        .navbar {
+            background-color: #040046;
+            text-align: center;
+
+        }
+
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ffffff !important;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            transition: color 0.3s;
+        }
+
+        .opened-nav {
+            background-color: #040046 !important;
+        }
+
+        .active {
+            color: white !important;
+            text-decoration: underline;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: large;
+        }
+
+        .nav-link:hover {
+            color: white !important;
+            text-decoration: underline;
+        }
+
+        /* end */
+
+        body.dark-mode {
+            background-color: #0a1f33;
+            color: #e5e5e5;
+            font-family: 'Roboto', sans-serif;
+            background-image: url("../assets/195384443_80e5a83e-0a99-494d-9489-4e89a8630084.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center
+        }
+
+        .container {
+            padding: 40px 30px;
+        }
+
+        h3 {
+            color: #ffffff;
+        }
+
+        label {
+            color: #ffffff;
+        }
+
+        .form-control {
+            background-color: #c4c9ed;
+            color: #000000;
+            border: 1px solid #345e3a;
+            box-shadow: none;
+        }
+
+        .form-control:focus {
+            border-color: #537686;
+            box-shadow: 0 0 0 0.25rem rgba(41, 182, 246, 0.5);
+        }
+
+        .btn-primary {
+            background-color: #030518;
+            border-color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #0277bd;
+            border-color: #0277bd;
+        }
+
+        .accept-btn {
+            background-color: #2ecc71;
+        }
+
+        .deny-btn {
+            background-color: #e74c3c;
+        }
+
+        .accept-btn:hover {
+            background-color: #27ae60;
+        }
+
+        .deny-btn:hover {
+            background-color: #c0392b;
+        }
+
+        /* Table Styles */
+        .table thead {
+            background-color: #1a252f;
+        }
+
+        .table th,
+        .table td {
+            color: #ecf0f1;
+            border-top: 1px solid #34495e;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .status.pending {
+            color: #f39c12;
+        }
+
+        .status.accepted {
+            color: #27ae60;
+        }
+
+        .status.denied {
+            color: #e74c3c;
+        }
+
+        .card {
+            background-color: #0a013fc9;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+
+        .card h3 {
+            font-size: 1.75rem;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.75rem;
+            }
+
+            .form-group input,
+            .form-group button {
+                font-size: 14px;
+            }
+
+            .navbar-nav {
+                text-align: center;
+            }
+        }
+
+
+        .attendance-table td,
+        .attendance-table th {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .attendance-table .status {
+            font-weight: bold;
+        }
+
+        .attendance-table .status.present {
+            color: #27ae60;
+        }
+
+        .attendance-table .status.absent {
+            color: #e74c3c;
+        }
+
+        .attendance-table .status.leave {
+            color: #f39c12;
+        }
+
+        .attendance-table .status.pending {
+            color: #f39c12;
+        }
+
+        /* Footer */
+        footer {
+            bottom: 0;
+            width: 100%;
+            text-align: center;
+            padding: 1rem;
+            background-color: #000000;
+            color: #FFFFFF;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+            animation: fadeIn 1s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="dark-mode">
+
+    <!-- Nav bar extracted and modified from Bootstrap -->
+    <nav class="navbar fixed-top" style="background: linear-gradient(90deg, #040046, #000000)" ;>
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation"
+                style="filter: invert(1);">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand" href="#">ModernTech Solutions</a>
+            <!-- Offcanvas content that will slide from the left -->
+            <div class="offcanvas offcanvas-start  text-bg-dark opened-nav" tabindex="-1" id="offcanvasDarkNavbar"
+                aria-labelledby="offcanvasDarkNavbarLabel">
+                <div id="offcanvas-header" class="offcanvas-header">
+                    <div>
+                        <a href="#"
+                            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
+                            <img src="../assets/moderntech-solutions-high-resolution-logo-removebg-preview.png"
+                                alt="Logo" style="height: 40px; margin-right: 10px;">
+                            <h5 class="offcanvas-title" id="offcanvasLightNavbarLabel">HR Information System</h5>
+                        </a>
+                    </div>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
+                        aria-label="Close"></button>
+                </div>
+                <div id="offcanvas-body" class="offcanvas-body">
+                    <hr style="width: 80%; margin: 0 auto;">
+                    <br>
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../dashboard/dashboard.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="../employeeData/employeedata.html">Employee
+                                Directory</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="../payroll/payroll.html">Payroll</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="../time/time.html">Time and Attendance</a>
+                        </li>
+                        <div class="position-absolute bottom-0 end-0 translate-middle-x text-center  pb-3">
+                            <a href="../login/login.html">
+                                <button id="submitButton" type="button"
+                                    class="btn btn-danger logout-btn">Logout</button>
+                            </a>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+
+        <!-- Home Section -->
+        <div id="home">
+            <h1 class="text-center">Weekly Attendance Log System</h1>
+            <p class="text-center">Manage your attendance and time off requests efficiently.</p>
+        </div>
+
+
+        <div id="attendance-log">
+            <!-- <h3 class="text-center">Weekly Attendance Log</h3> -->
+
+            <!-- Attendance Spreadsheet with Dates from Nov 25, 2024 to Dec 3, 2024 -->
+            <table class="table table-striped table-dark attendance-table">
+                <thead>
+                    <tr>
+                        <th>Employee Name</th>
+                        <th>Nov 25, 2024</th>
+                        <th>Nov 26, 2024</th>
+                        <th>Nov 27, 2024</th>
+                        <th>Nov 28, 2024</th>
+                        <th>Nov 29, 2024</th>
+                        <th>Leave dates-employees</th>
+                        <th>Remaining dates-employees</th>
+                    </tr>
+                </thead>
+                <tbody id="attendance-table-body">
+                    <tr data-employees="Sibongile Nkosi">
+                        <td>Sibongile Nkosi</td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status absent">Absent</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status">22/11/24</span></td>
+                        <td><span class="status">01/12/24</span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Lungile Moyo</td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status leave">Present</span></td>
+                        <td><span class="status present">Absent</span></td>
+                        <td><span class="status absent">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">15/11/24(Denied)</span></td>
+                        <td><span class="status absent">02/12/24<span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Thabo Molefe</td>
+                        <td><span class="status absent">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Absent</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">10/11/24</span></td>
+                        <td><span class="status absent">05/11/24</span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Keshav Naidoo</td>
+                        <td><span class="status present">Absent</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">20/11/24</span></td>
+                        <td><span class="status"></span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Zanele Khumalo</td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status absent">Present</span></td>
+                        <td><span class="status present">Absent</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">01/12/24</span></td>
+                        <td><span class="status"></span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Sipho Zulu</td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status absent">Absent</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">18/11/24</span></td>
+                        <td><span class="status"></span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Naledi Moeketsi</td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status absent">Absent</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status absent">22/11/24</span></td>
+                        <td><span class="status"></span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Farai Gumbo</td>
+                        <td><span class="status leave">Present</span></td>
+                        <td><span class="status absent">Absent</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">02/12/24</span></td>
+                        <td><span class="status"></span></td>
+
+                    </tr>
+                    <tr>
+                        <td>Karabo Dlamini</td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status absent">Absent</span></td>
+                        <td><span class="status present">19/11/24(Denied)</span></td>
+                        <td><span class="status"></span></td>
+
+
+                    </tr>
+                    <tr>
+                        <td>Fatima Patel</td>
+                        <td><span class="status absent">Absent</span></td>
+                        <td><span class="status present ">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status present">Present</span></td>
+                        <td><span class="status absent">03/12/24</span></td>
+                        <td><span class="status"></span></td>
+
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <br>
+        <br>
+        <div id="request-time-off">
+            <h1 class="text-center">Request Time Off</h1>
+
+            <div class="card">
+                <h3>Submit a request</h3>
+                <form id="timeOffForm">
+                    <div class="form-group">
+                        <label for="employee-name">Employee Name</label>
+                        <input type="text" id="employee-name" class="form-control" placeholder="Your Name" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="time-off-date">Date of Time Off</label>
+                        <input type="date" id="time-off-date" class="form-control" required>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="reason">Reason for Time Off</label>
+                        <textarea id="reason" class="form-control" rows="3" placeholder="Reason" required></textarea>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </form>
+                <div id="responseMessage" style="margin-top: 20px; display: none;">
+                    <p class="text-success" style="display: none">Your submission was succesfully submitted!</p>
+
+                </div>
+
+
+                <link href="https://cdn.jsdelivr.net/npm/fullcalendar@3.0.0/dist/fullcalendar.min.css" rel="stylesheet">
+
+                <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.0.0/dist/fullcalendar.min.js"></script>
+
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+    <!-- JavaScript for Bootstrap and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Script -->
+    <script>
+        document.getElementById("timeOffForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+
+            var employeeName = document.getElementById("employee-name").value;
+            var timeOffDate = document.getElementById("time-off-date").value;
+            var reason = document.getElementById("reason").value;
+
+            var successMessage = document.querySelector("#responseMessage .text-success");
+            successMessage.style.display = "block";
+            successMessage.textContent = "Your submission was successfully submitted!";
+
+            var failureMessage = document.querySelector("#responseMessage .text-unsuccess");
+            if (failureMessage) {
+                failureMessage.style.display = "none";
+            }
+
+            document.getElementById("responseMessage").style.display = "block";
+
+
+            document.getElementById("timeOffForm").reset();
+        });
+
+
+    </script>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 MODERNTECH SOLUTIONS. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>

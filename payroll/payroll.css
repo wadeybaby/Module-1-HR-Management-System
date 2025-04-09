@@ -1,0 +1,226 @@
+#body {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: #FFFFFF;
+    overflow-x: hidden;
+    background-image: url('../assets/195384443_80e5a83e-0a99-494d-9489-4e89a8630084.jpg');
+}
+
+/* Container for layout */
+.container {
+    width: 100%;
+    max-width: 100%;
+    margin: auto;
+    padding: 0;
+}
+
+/* Header styling */
+header {
+    text-align: center;
+    padding: 0.8rem;
+    background: linear-gradient(90deg, #040046, #000000);
+    color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+    animation: slideInFromTop 1s ease-in-out;
+}
+
+/* Header title styling */
+header h1 {
+    font-size: 1.5rem;
+    margin: 0.5rem 0;
+    padding: 10px;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    margin: 1rem 0;
+    border-collapse: collapse;
+    background: rgba(0, 0, 0, 0.5);
+    color: #FFFFFF;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+    border-radius: 0.5rem;
+    font-size: 0.9rem;
+    overflow-x: hidden;
+}
+
+/* Table row styling */
+table tr {
+    display: table-row;
+    flex-wrap: wrap;
+}
+
+/* Table cell padding */
+th,
+td {
+    padding: 8px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Table header styling */
+th {
+    background-color: #3333FF;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+/* Table row layout */
+tr {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+
+/* Table cell background */
+td {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Even row styling */
+tr:nth-child(even) {
+    background-color: rgba(4, 0, 70, 0.8);
+}
+
+/* Odd row styling */
+tr:nth-child(odd) {
+    background-color: rgba(4, 0, 70, 0.6);
+}
+
+/* Button styling */
+button {
+    background-color: #040046;
+    color: #FFFFFF;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0.5rem auto;
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #3333FF;
+}
+
+/* NavBar styling */
+.navbar {
+    background-color: #040046;
+    text-align: center;
+}
+
+#offcanvas-body {
+    background-color: #040046;
+}
+
+#offcanvas-header {
+    background-color: #040046;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #FFFFFF !important;
+}
+
+.navbar-nav .nav-link {
+    color: #FFFFFF;
+    transition: color 0.3s;
+}
+
+.opened-nav {
+    background-color: #040046 !important;
+}
+
+.active {
+    color: white !important;
+    text-decoration: underline;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: large;
+}
+
+.nav-link:hover {
+    color: white !important;
+    text-decoration: underline;
+}
+
+/* Media responsive design for different sized screens */
+/* For screens smaller than 600px */
+@media (max-width: 600px) {
+    header {
+        padding: 0.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    header h1 {
+        font-size: 1.2rem;
+    }
+
+    table {
+        display: block;
+        font-size: 0.8rem;
+    }
+
+    tr {
+        display: block;
+        margin-bottom: 1rem;
+    }
+
+    th,
+    td {
+        display: block;
+        width: 100%;
+        text-align: left;
+        padding: 4px 6px;
+    }
+
+    button {
+        font-size: 0.7rem;
+        padding: 6px 8px;
+    }
+}
+
+/* For screens between 601px and 1024px */
+@media (min-width: 601px) and (max-width: 1024px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    table {
+        font-size: 0.9rem;
+    }
+
+    th,
+    td {
+        padding: 6px 8px;
+    }
+
+    button {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+}
+
+/* Footer */
+footer {
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: #000000;
+    color: #ffffff;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}

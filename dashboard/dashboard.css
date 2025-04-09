@@ -1,0 +1,201 @@
+/* Base Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #000000;
+    color: #FFFFFF;
+    margin: 0;
+    padding: 0;
+    /* Background Image for the Whole Page */
+    background-image: url('../assets/195384443_80e5a83e-0a99-494d-9489-4e89a8630084.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f4f4f4;
+}
+
+
+header {
+    text-align: center;
+    padding: 2rem;
+    background: linear-gradient(90deg, #040046, #000000);
+    color: #FFFFFF;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Navbar start*/
+.navbar {
+    background-color: #040046;
+    text-align: center;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #ffffff !important;
+}
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    transition: color 0.3s;
+}
+
+.opened-nav {
+    background-color: #040046 !important;
+}
+
+.active {
+    color: white !important;
+    text-decoration: underline;
+}
+
+.nav-link {
+    color: white !important;
+    font-size: large;
+}
+
+.nav-link:hover {
+    color: white !important;
+    text-decoration: underline;
+}
+
+/* end */
+
+/* Search Section */
+.input-group {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group .form-control {
+    border: 2px solid #FFFFFF;
+    border-radius: 0.5rem;
+    background-color: #000000;
+    color: #FFFFFF;
+    transition: box-shadow 0.3s;
+}
+
+.input-group .form-control:focus {
+    box-shadow: 0 0 10px #040046;
+}
+
+.input-group .btn-primary {
+    background-color: #040046;
+    border: none;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.input-group .btn-primary:hover {
+    background-color: #3333FF;
+    transform: scale(1.05);
+}
+
+/* Employee Cards */
+.card {
+    background: linear-gradient(120deg, #040046, #030314);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 0.8rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.6);
+    width: 100%;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.8);
+}
+
+.card .card-title {
+    color: #FFFFFF;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+
+/* Employee List Grid */
+#data-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+/* Footer */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    padding: 1rem;
+    background-color: #000000;
+    color: #FFFFFF;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.5);
+    animation: fadeIn 1s ease-in-out;
+}
+
+
+/* Animations */
+@keyframes slideInFromTop {
+    0% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Employee List */
+#employeeList {
+    margin-top: 2rem;
+    animation: fadeIn 1s ease-in-out;
+}
+
+#employeeList div {
+    background-color: #040046;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    .navbar-brand {
+        font-size: 1.25rem;
+    }
+
+    #data-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    #data-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.background-color {
+    background-color: #040046;
+}
